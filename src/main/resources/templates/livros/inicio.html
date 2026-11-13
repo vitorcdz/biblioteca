@@ -1,17 +1,124 @@
-<!doctype html>
-<html xmlns:th="...">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <title>Sistema de Biblioteca</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <title>Biblioteca</title>
 </head>
 <body>
-<h1 th:text = "'Sistema de Biblioteca'"></h1>
-<nav>
-    <a th:href = "@{/livros}">Livros</a>
-    <a th:href = "@{/autores}">Autores</a>
-    <a th:href = "@{/categorias}">Categorias</a>
-    <a th:href = "@{/usuarios}">Usuários</a>
-    <a th:href = "@{/emprestimos}">Empréstimos</a>
-</nav>
+
+<header>
+    <h1>Sistema de Biblioteca</h1>
+    <nav>
+        <a href="#livros">Livros</a>
+        <a href="#autores">Autores</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#usuarios">Usuários</a>
+        <a href="#emprestimos">Empréstimos</a>
+    </nav>
+</header>
+
+<section id="livros">
+    <h2>Livros</h2>
+
+    <div th:each="livro : ${livros}">
+        <p><strong>Título:</strong>
+            <span th:text="${livro.titulo}"></span>
+        </p>
+
+        <p><strong>Autor:</strong>
+            <span th:text="${livro.autor.nome}"></span>
+        </p>
+
+        <p><strong>ISBN:</strong>
+            <span th:text="${livro.isbn}"></span>
+        </p>
+
+        <p><strong>Categoria:</strong>
+            <span th:text="${livro.categoria.categoria}"></span>
+        </p>
+
+        <p><strong>Disponibilidade:</strong>
+            <span th:text="${livro.disponibilidade}"></span>
+        </p>
+
+        <hr>
+    </div>
+</section>
+
+<section id="autores">
+    <h2>Autores</h2>
+
+    <div th:each="autor : ${autores}">
+        <p><strong>Nome:</strong>
+            <span th:text="${autor.nome}"></span>
+        </p>
+
+        <p><strong>Nacionalidade:</strong>
+            <span th:text="${autor.nacionalidade}"></span>
+        </p>
+
+        <p><strong>Livros:</strong></p>
+
+        <ul>
+            <li th:each="livro : ${autor.livros}"
+                th:text="${livro.titulo}">
+            </li>
+        </ul>
+
+        <hr>
+    </div>
+</section>
+
+<section id="categorias">
+    <h2>Categorias</h2>
+
+    <ul>
+        <li th:each="categoria : ${categorias}"
+            th:text="${categoria.categoria}">
+        </li>
+    </ul>
+</section>
+
+<section id="usuarios">
+    <h2>Usuários</h2>
+
+    <div th:each="usuario : ${usuarios}">
+        <p><strong>Nome:</strong>
+            <span th:text="${usuario.nome}"></span>
+        </p>
+
+        <p><strong>Quantidade de empréstimos:</strong>
+            <span th:text="${#lists.size(usuario.emprestimos)}"></span>
+        </p>
+
+        <hr>
+    </div>
+</section>
+
+<section id="emprestimos">
+    <h2>Empréstimos</h2>
+
+    <div th:each="emprestimo : ${emprestimos}">
+        <p><strong>Aluno:</strong>
+            <span th:text="${emprestimo.aluno.nome}"></span>
+        </p>
+
+        <p><strong>Livro:</strong>
+            <span th:text="${emprestimo.livro.titulo}"></span>
+        </p>
+
+        <p><strong>Retirada:</strong>
+            <span th:text="${emprestimo.retirada}"></span>
+        </p>
+
+        <p><strong>Devolução:</strong>
+            <span th:text="${emprestimo.devolucao}"></span>
+        </p>
+
+        <hr>
+    </div>
+</section>
+
 </body>
 </html>

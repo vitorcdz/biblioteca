@@ -5,15 +5,7 @@ import java.util.List;
 public class Autor {
     private String nome;
     private String nacionalidade;
-    private List<String> livros;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    private List<Livro> livros;
 
     public String getNacionalidade() {
         return nacionalidade;
@@ -23,11 +15,19 @@ public class Autor {
         this.nacionalidade = nacionalidade;
     }
 
-    public List<String> getLivros() {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Livro> getLivros() {
         return livros;
     }
 
-    public void setLivros(List<String> livros) {
+    public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }
 }

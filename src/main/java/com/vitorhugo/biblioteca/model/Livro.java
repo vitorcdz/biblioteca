@@ -2,9 +2,9 @@ package com.vitorhugo.biblioteca.model;
 
 public class Livro {
     private String titulo;
-    private String autor;
+    private Autor autor;
     private String isbn;
-    private String categoria;
+    private Categoria categoria;
     private String disponibilidade;
 
     public String getTitulo() {
@@ -15,11 +15,11 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
@@ -31,11 +31,11 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -47,3 +47,5 @@ public class Livro {
         this.disponibilidade = disponibilidade;
     }
 }
+
+

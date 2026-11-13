@@ -3,25 +3,25 @@ package com.vitorhugo.biblioteca.model;
 import java.time.LocalDateTime;
 
 public class Emprestimo {
-    private String aluno;
-    private String livro;
+    private Usuario aluno;
+    private Livro livro;
     private LocalDateTime retirada;
     private LocalDateTime devolucao;
 
-    public String getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(String aluno) {
-        this.aluno = aluno;
-    }
-
-    public String getLivro() {
+    public Livro getLivro() {
         return livro;
     }
 
-    public void setLivro(String livro) {
+    public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    public Usuario getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Usuario aluno) {
+        this.aluno = aluno;
     }
 
     public LocalDateTime getRetirada() {
