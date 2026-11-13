@@ -1,0 +1,35 @@
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover{
+    text-decoration: underline;
+    transform: translateY(-15%);
+}
+
+h1{
+    font-size: xx-large;
+    color: gold;
+    padding-bottom: 3vh;
+}
+
+body{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #422006;
+}
