@@ -52,25 +52,3 @@ nav a:hover{
     color: #facc15;
 }
 
-section{
-    background-color: white;
-    padding: 20px;
-    margin: 25px 20px;
-    border-radius: 8px;
-}
-
-section h2{
-    color: #1e3a8a;
-    margin-bottom: 15px;
-}
-
-section p{
-    color: #444;
-    margin-bottom: 10px;
-}
-
-section hr{
-    margin: 15px 0;
-    border: none;
-    border-top: 1px solid #ddd;
-}
