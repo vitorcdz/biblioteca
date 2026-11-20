@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Empréstimos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Sistema de Biblioteca</h1>
+    <nav>
+        <a th:href="@{/}">Início</a>
+        <a th:href="@{/livros}">Livros</a>
+        <a th:href="@{/autores}">Autores</a>
+        <a th:href="@{/categorias}">Categorias</a>
+        <a th:href="@{/usuarios}">Usuários</a>
+        <a th:href="@{/emprestimos}">Empréstimos</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Cadastrar Empréstimo</h2>
+
+    <form th:action="@{/emprestimos}" method="post">
+        <input type="text" name="aluno.nome" placeholder="Nome do usuário" required>
+        <input type="text" name="livro.titulo" placeholder="Título do livro" required>
+        <label>Data de retirada</label>
+        <input type="datetime-local" name="retirada" required>
+        <label>Data de devolução</label>
+        <input type="datetime-local" name="devolucao" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+</section>
+
+<section>
+    <h2>Empréstimos cadastrados</h2>
+
+    <div th:each="emprestimo, status : ${emprestimos}">
+
+        <form th:action="@{/emprestimos/atualizar/{indice}(indice=${status.index})}" method="post">
+            <input type="text" name="aluno.nome" th:value="${emprestimo.aluno != null ? emprestimo.aluno.nome : ''}" placeholder="Usuário" required>
+            <input type="text" name="livro.titulo" th:value="${emprestimo.livro != null ? emprestimo.livro.titulo : ''}" placeholder="Livro" required>
+
+            <label>Data de retirada</label>
+            <input type="datetime-local" name="retirada"
+                   th:value="${#temporals.format(emprestimo.retirada, 'yyyy-MM-dd''T''HH:mm')}" required>
+
+            <label>Data de devolução</label>
+            <input type="datetime-local" name="devolucao"
+                   th:value="${#temporals.format(emprestimo.devolucao, 'yyyy-MM-dd''T''HH:mm')}" required>
+
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{/emprestimos/excluir/{indice}(indice=${status.index})}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Excluir</button>
+        </form>
+
+        <hr>
+    </div>
+</section>
+
+</body>
+</html>
