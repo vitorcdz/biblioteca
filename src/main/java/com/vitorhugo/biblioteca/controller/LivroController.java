@@ -3,12 +3,8 @@ package com.vitorhugo.biblioteca.controller;
 import com.vitorhugo.biblioteca.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +14,32 @@ public class LivroController {
 
     private List<Livro> livros = new ArrayList<>();
 
+    @GetMapping
+    public String listar(Model model){
+        model.addAttribute("livros", livros);
+        return "livros";
+    }
+
     @PostMapping
     public String cadastrar(@ModelAttribute Livro livro){
         livros.add(livro);
         return "redirect:/livros";
     }
 
-    @GetMapping("/inicio")
-    public String inicio(Model model) {
-        return "livros/inicio";
+    @PostMapping("/atualizar/{indice}")
+    public String atualizar(@PathVariable int indice, @ModelAttribute Livro livro){
+
+        if(indice >= 0 && indice < livros.size()){
+            livros.set(indice, livro);
+        }
+        return "redirect:/livros";
+    }
+
+    @DeleteMapping("/excluir/{indice}")
+    public String excluir(@PathVariable int indice){
+        if(indice >= 0 && indice < livros.size()){
+            livros.remove(indice);
+        }
+        return "redirect:/livros";
     }
 }
