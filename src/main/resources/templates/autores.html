@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Sistema de Biblioteca</h1>
+    <nav>
+        <a th:href="@{/}">Início</a>
+        <a th:href="@{/livros}">Livros</a>
+        <a th:href="@{/autores}">Autores</a>
+        <a th:href="@{/categorias}">Categorias</a>
+        <a th:href="@{/usuarios}">Usuários</a>
+        <a th:href="@{/emprestimos}">Empréstimos</a>
+    </nav>
+</header>
+
+<section>
+    <h2>Cadastrar Autor</h2>
+
+    <form th:action="@{/autores}" method="post">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="nacionalidade" placeholder="Nacionalidade" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+</section>
+
+<section>
+    <h2>Autores cadastrados</h2>
+
+    <div th:each="autor, status : ${autores}">
+
+        <form th:action="@{/autores/atualizar/{indice}(indice=${status.index})}" method="post">
+            <input type="text" name="nome" th:value="${autor.nome}" required>
+            <input type="text" name="nacionalidade" th:value="${autor.nacionalidade}" required>
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{/autores/excluir/{indice}(indice=${status.index})}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Excluir</button>
+        </form>
+
+        <hr>
+    </div>
+</section>
+
+</body>
+</html>
